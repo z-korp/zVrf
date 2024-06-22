@@ -28,7 +28,7 @@ struct VrfResponse {
 pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
     dotenv::dotenv().ok();
 
-    let secret_key_value = env::var("VITE_SECRET_KEY").expect("VITE_SECRET_KEY must be set");
+    let secret_key_value = env::var("SECRET_KEY").expect("SECRET_KEY must be set");
     let secret_key = ScalarField::from(secret_key_value.parse::<u64>().unwrap());
 
     let public_key = (StarkCurve::GENERATOR * secret_key).into_affine();
